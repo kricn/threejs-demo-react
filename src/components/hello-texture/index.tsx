@@ -52,8 +52,16 @@ const HelloTexture = () => {
     scene.background = new Three.Color(0xcccccc)
 
     //创建一个材质，材质的 map 属性值为 纹理加载器加载的图片资源
+    const texture = loader.load(imgSrc) //loader.load('xxx.jpg')返回值为Three.Text类型实例
+    // 设置纹理重复次数
+    texture.wrapS= Three.RepeatWrapping
+    texture.wrapT= Three.RepeatWrapping
+    texture.repeat.set(2, 3) //设置水平方向重复 2 次、垂直方向重复 3 次
+    // texture.offset.set(0.5,0.25) //设置纹理水平方向偏移 0.5 个纹理宽度、垂直方向偏移 0.25 个纹理高度
+    // texture.center.set(0.5,0.5) //将旋转中心点改为图片的正中心位置
+    // texture.rotation = Three.MathUtils.degToRad(45) //设置纹理旋转弧度
     const material = new Three.MeshBasicMaterial({
-      map: loader.load(imgSrc) //loader.load('xxx.jpg')返回值为Three.Text类型实例
+      map: texture
     })
 
     const box = new Three.BoxGeometry(8, 8, 8)
