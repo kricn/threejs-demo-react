@@ -7,10 +7,23 @@ import myCylinder from './my-cylinder'
 import myDodecahedron from './my-dodecahedron'
 import myEdges from './my-edges'
 import myWireframe from './my-wireframe'
+import createText from './my-text'
 
 import './index.scss'
 
-const meshArr: (Three.Mesh | Three.LineSegments)[] = []
+const meshArr: (Three.Mesh | Three.LineSegments | Three.Object3D)[] = [] //保存所有图形的元数组
+
+export const createMaterial = () => {
+  const material = new Three.MeshPhongMaterial({ side: Three.DoubleSide })
+
+  const hue = Math.floor(Math.random() * 100) / 100 //随机获得一个色相
+  const saturation = 1 //饱和度
+  const luminance = 0.5 //亮度
+
+  material.color.setHSL(hue, saturation, luminance)
+
+  return material
+}
 
 /**
  * [图元文档](https://threejs.org/manual/#zh/primitives)
@@ -21,20 +34,8 @@ const HelloPrimitives = () => {
   const rendererRef = useRef<Three.WebGLRenderer | null>(null)
   const cameraRef = useRef<Three.PerspectiveCamera | null>(null)
 
-  const createMaterial = () => {
-    const material = new Three.MeshPhongMaterial({ side: Three.DoubleSide })
-
-    const hue = Math.floor(Math.random() * 100) / 100 //随机获得一个色相
-    const saturation = 1 //饱和度
-    const luminance = 0.5 //亮度
-
-    material.color.setHSL(hue, saturation, luminance)
-
-    return material
-  }
-
   const createInit = useCallback(
-    () => {
+    async () => {
       if (canvasRef.current === null) {
         return
       }
@@ -77,6 +78,8 @@ const HelloPrimitives = () => {
         const mesh = new Three.Mesh(item, material)
         meshArr.push(mesh) //将网格添加到网格数组中
       })
+
+      meshArr.push(await createText())
 
       //获得各个 line 类型的图元实例，并添加到 meshArr 中
       const linePrimitivesArr: Three.BufferGeometry[] = []
