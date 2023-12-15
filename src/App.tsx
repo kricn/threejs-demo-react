@@ -1,5 +1,6 @@
 import './App.scss';
-import HelloLight from './components/hello-light';
+import HelloCamera from './components/hello-camera';
+// import HelloLight from './components/hello-light';
 // import HelloThreejs from '@/components/hello-threejs';
 // import HelloPrimitives from '@/components/hello-primitives';
 // import HelloScene from '@/components/hello-scene';
@@ -10,7 +11,8 @@ function App() {
     // <HelloPrimitives />
     // <HelloScene />
     // <HelloTexture />
-    <HelloLight />
+    // <HelloLight />
+    <HelloCamera />
   );
 }
 
