@@ -6,6 +6,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import './index.scss';
 
 import dice0 from '@/assets/imgs/dice0.png'
+import roundshadow from '@/assets/imgs/roundshadow.png'
 
 interface SphereShadowBase {
   base: Three.Object3D,
@@ -57,7 +58,7 @@ const HelloFakeShadow = () => {
     mesh.rotation.x = Math.PI * -0.5
     scene.add(mesh)
 
-    const shadowTexture = loader.load(require('@/assets/imgs/roundshadow.png').default)
+    const shadowTexture = loader.load(roundshadow)
     const basesArray: SphereShadowBase[] = [] //所有球体假阴影对应的数组
 
     const sphereRadius = 1
