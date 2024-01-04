@@ -1,5 +1,6 @@
 import './App.scss';
-import HelloFog from './components/hello-fog';
+import HelloRenderTarget from './components/hello-render-target';
+// import HelloFog from './components/hello-fog';
 // import HelloCamera from './components/hello-camera';
 // import HelloFakeShadow from './components/hello-fake-shadow';
 // import HelloLight from './components/hello-light';
@@ -16,7 +17,8 @@ function App() {
     // <HelloLight />
     // <HelloCamera />
     // <HelloFakeShadow />
-    <HelloFog />
+    // <HelloFog />
+    <HelloRenderTarget />
   );
 }
 
